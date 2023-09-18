@@ -1,0 +1,44 @@
+<div>
+  <form [formGroup]="userForm">
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td>
+          <input type="text" formControlName="username"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td>
+          <input type="text" formControlName="password"/>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1">
+          <input type="button" value="Agregar" (click)="save()"/>
+        </td>
+      </tr>
+    </table>
+   
+  </form>
+  <table *ngIf="hayRegistros(); else sinusuarios">
+    <thead>
+      <th>Id</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Borrar</th>
+      <th>Modificar</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userList">
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.password}}</td>
+        <td><button (click)="delete(user.id)">Borrar</button></td>
+        <td><button (click)="update(user)">Modificar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #sinusuarios><p>No hay usuarios.</p></ng-template>
+</div>
+<router-outlet></router-outlet>
